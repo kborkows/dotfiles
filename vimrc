@@ -14,13 +14,14 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/vim-easy-align'
 Plug 'moll/vim-node'
 Plug 'pangloss/vim-javascript'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'    }
 Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-git'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
 Plug 'tpope/vim-surround'
 
 call plug#end()
