@@ -36,22 +36,22 @@ set nocompatible
 "--------------------------------------------------------------------------------
 " moving around, searching and patterns
 "--------------------------------------------------------------------------------
-set autochdir " Change working directory to opened file's one
-set incsearch " highlight matches when typing
+set autochdir  " Change working directory to opened file's one
+set incsearch  " highlight matches when typing
 set ignorecase " case-insensitive searching
-set smartcase " if there are uppercase chars in search pattern, make search case sensitive
+set smartcase  " if there are uppercase chars in search pattern, make search case sensitive
 
 "--------------------------------------------------------------------------------
 " displaying text
 "--------------------------------------------------------------------------------
 set scrolloff=5 " Scroll offset
-set wrap " wrap lines
+set wrap        " wrap lines
 set linebreak   " Respect words when wrapping
 set breakindent " Indent wrapped text
 set showbreak=>
 set list
 set listchars=tab:⇢\ ,trail:·
-set number " Show line numbers
+set number      " Show line numbers
 
 "--------------------------------------------------------------------------------
 " syntax, highlighting and spelling
@@ -59,14 +59,14 @@ set number " Show line numbers
 set background=dark
 filetype plugin indent on " Filetype detection
 syntax on
-set hlsearch    " highlight all matches
-set colorcolumn=120 " Highlight n-th column
+set hlsearch              " highlight all matches
+set colorcolumn=120       " Highlight n-th column
 
 "--------------------------------------------------------------------------------
 " multiple windows
 "--------------------------------------------------------------------------------
 set laststatus=2 " Always show statusline
-set hidden " Hide buffer (instead of closing)
+set hidden       " Hide buffer (instead of closing)
 set splitbelow
 set splitright
 
@@ -91,16 +91,16 @@ set showcmd " Show partial command in the last line of screen
 set textwidth=0
 set wrapmargin=0
 set backspace=indent,eol,start " Make backspace work like it should
-set noshowmatch " Don't visually jump to matching bracket when typing closing one
+set noshowmatch                " Don't visually jump to matching bracket when typing closing one
 
 "--------------------------------------------------------------------------------
 " tabs and indenting
 "--------------------------------------------------------------------------------
-set shiftwidth=4    " Indent width when using << and >>
-set softtabstop=4   " How many spaces should TAB be replaced with
-set shiftround      " Round indendation to multiples of shiftwidth when using << and >>
-set expandtab       " When typing, replace TAB with spaces
-set autoindent      " Copy indentation from previous line
+set shiftwidth=4  " Indent width when using << and >>
+set softtabstop=4 " How many spaces should TAB be replaced with
+set shiftround    " Round indendation to multiples of shiftwidth when using << and >>
+set expandtab     " When typing, replace TAB with spaces
+set autoindent    " Copy indentation from previous line
 
 "--------------------------------------------------------------------------------
 " mapping
@@ -187,14 +187,20 @@ vnoremap <silent> # :<C-U>
     \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
     \gV:call setreg('"', old_reg, old_regtype)<CR>
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 "--------------------------------------------------------------------------------
 " AUTOCOMMANDS
 "--------------------------------------------------------------------------------
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-            \ if line("'\"") > 0 && line("'\"") <= line("$") |
-            \   exe "normal! g`\"" |
-            \ endif
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
 
 au VimResized * wincmd =
 
