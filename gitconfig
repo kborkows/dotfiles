@@ -1,0 +1,54 @@
+[alias]
+    br = branch -vv
+    cbr = symbolic-ref --short HEAD
+    chp = cherry-pick
+    chpa = cherry-pick --abort
+    chpc = cherry-pick --continue
+    ci = commit
+    cl = clone
+    co = checkout
+    cob = checkout -b
+    cof = !git co $(git for-each-ref refs/heads | cut -d/ -f3- | fzf)
+    cum = checkout upstream/master
+    d = diff --ignore-all-space
+    dc = describe --contains
+    ds = diff --staged --ignore-all-space
+    ec = config --global -e
+    f = fetch
+    fa = fetch --all
+    fo = fetch origin
+    fu = fetch upstream
+    glog = log --graph --oneline --decorate
+    last = show --stat
+    ls = log --pretty=format:'%C(magenta)%h%Creset %s %C(dim green)(%cr) %C(cyan)<%an>%Creset'
+    publish = "!git push -u origin $(git cbr)"
+    pushf = push --force-with-lease
+    rb = rebase
+    rba = rebase --abort
+    rbc = rebase --continue
+    rbi = rebase -i
+    rbs = rebase --skip
+    rebuild = !git commit --amend --no-edit && git push --force-with-lease
+    refl = reflog --format='%C(auto)%h %<|(17)%gd %C(blue)%ci%C(reset) %s'
+    rmt = remote
+    rmtl = !git remote -vv | awk 'NR % 2 == 0' | cut -d\\  -f 1 | column -t
+    rum = rebase upstream/master
+    s = status --short --branch --untracked-files=no
+    st = status --short --branch
+    t = tag
+    tc = tag --contains
+    unpublish = "!git push origin :$(git cbr)"
+    unstage = reset HEAD --
+    up = pull --rebase=preserve --ff-only
+[core]
+    editor = vim
+[push]
+    default = simple
+[pull]
+    ff = only
+    rebase = preserve
+[branch]
+    autosetuprebase = always
+[log]
+    follow = true
+
