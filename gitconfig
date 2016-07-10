@@ -42,6 +42,7 @@
     up = pull --rebase=preserve --ff-only
 [core]
     editor = vim
+	excludesfile = ~/.dotfiles/gitignore
 [push]
     default = simple
 [pull]
