@@ -146,7 +146,7 @@ set gdefault " by default replace matches in whole file, not only current line
 "--------------------------------------------------------------------------------
 " MAPPINGS
 "--------------------------------------------------------------------------------
-let mapleader="<Space>"
+let mapleader="\<Space>"
 
 " Make j/k work on wrapped lines
 nnoremap j gj
