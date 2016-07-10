@@ -48,7 +48,7 @@ set scrolloff=5 " Scroll offset
 set wrap        " wrap lines
 set linebreak   " Respect words when wrapping
 set breakindent " Indent wrapped text
-set showbreak=>
+let &showbreak = '↳ '
 set list
 set listchars=tab:⇢\ ,trail:·
 set number      " Show line numbers
