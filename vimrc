@@ -23,6 +23,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-surround'
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
