@@ -158,6 +158,7 @@ inoremap <F1> <NOP>
 
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>e :e<CR>
 
 " Leave cursor in place when joining lines with J
 nnoremap J mzJ`z
