@@ -7,23 +7,30 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin("~/.vim/plugged")
+Plug 'fxn/vim-monochrome'
 
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-libclang' }
 Plug 'Yggdroot/indentLine'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
-Plug 'moll/vim-node'
-Plug 'pangloss/vim-javascript'
-Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'    }
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-surround'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
+Plug 'airblade/vim-gitgutter'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'mileszs/ack.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'nixprime/cpsm', { 'do': './install.sh' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -61,7 +68,7 @@ set background=dark
 filetype plugin indent on " Filetype detection
 syntax on
 set hlsearch              " highlight all matches
-set colorcolumn=120       " Highlight n-th column
+set colorcolumn=100       " Highlight n-th column
 
 "--------------------------------------------------------------------------------
 " multiple windows
@@ -195,8 +202,18 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+noremap <leader>b :Gblame<cr>
+
 " Select pasted text
 nnoremap gp `[v`]
+
+" Edit/source vimrc
+nnoremap <leader>ev :vs $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+noremap <leader>p :CtrlPBuffer<cr>
+
+nnoremap <leader>d :YcmCompleter GoTo<cr>
 
 "--------------------------------------------------------------------------------
 " AUTOCOMMANDS
@@ -217,7 +234,13 @@ let g:ctrlp_by_filename = 1             " By default search filenames only
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_max_files=0
 let g:ctrlp_lazy_update = 50            " Now, that's a really nice option! (reducing lag when typing in ctrlp)
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_user_command = 'ag %s --smartcase --nocolor -g ""'
+let g:ctrlp_match_window = 'bottom,order:btt'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_path_nolim = 1
+let g:ctrlp_brief_prompt = 1
 
 " PyMatcher for CtrlP
 if !has('python')
@@ -226,11 +249,31 @@ else
     let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
 
+" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+
+
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_register_as_syntastic_checker = 0
-let g:ycm_seed_identifiers_with_syntax = 1
+" let g:ycm_register_as_syntastic_checker = 0
+" let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_confirm_extra_conf = 0
 
 " Airline
 let g:airline_theme='luna'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
+set display+=lastline
+
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep --smart-case'
+endif
+
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
+
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
